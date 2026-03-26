@@ -12,14 +12,29 @@ const reviews = [
 
 export default function Testimonials() {
   return (
-    <section style={{ padding: '150px 0', backgroundColor: '#fff' }}>
+    <>
+      <style>{`
+        .testimonials-section { padding: 150px 0; background-color: #fff; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .testimonials-title { font-size: 52px; line-height: 1.2; }
+        @media (max-width: 1024px) {
+          .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+          .testimonials-section { padding: 100px 0; }
+        }
+        @media (max-width: 768px) {
+          .testimonials-title { font-size: 32px; }
+          .testimonials-grid { grid-template-columns: 1fr; }
+          .testimonials-section { padding: 60px 0; }
+        }
+      `}</style>
+      <section className="testimonials-section">
       <div style={{ maxWidth: theme.wrappers.w1, margin: '0 auto', padding: '0 15px' }}>
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>
           <span style={{ display: 'block', textTransform: 'uppercase', color: theme.colors.secondary, marginBottom: '10px', letterSpacing: '1px' }}>OUR TESTIMONIALS</span>
-          <h2 style={{ fontSize: '52px', fontWeight: 600, color: theme.colors.primary, lineHeight: '1.2' }}>What Patients are Saying!</h2>
+          <h2 className="testimonials-title" style={{ fontWeight: 600, color: theme.colors.primary }}>What Patients are Saying!</h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '30px' }}>
+        <div className="testimonials-grid">
           {reviews.map((rev, index) => (
             <div key={index} style={{
               backgroundColor: '#fff',
@@ -52,5 +67,6 @@ export default function Testimonials() {
         </div>
       </div>
     </section>
+  </>
   );
 }

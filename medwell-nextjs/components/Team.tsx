@@ -13,14 +13,42 @@ const team = [
 
 export default function Team() {
   return (
-    <section style={{ padding: '150px 0', backgroundColor: '#f6f9ff' }}>
+    <>
+      <style>{`
+        .team-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 30px;
+        }
+        .team-section {
+          padding: 150px 0;
+          background-color: #f6f9ff;
+        }
+        .team-title {
+          font-size: 52px;
+          line-height: 1.2;
+        }
+        @media (max-width: 1200px) {
+          .team-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 1024px) {
+          .team-grid { grid-template-columns: repeat(2, 1fr); }
+          .team-section { padding: 100px 0; }
+        }
+        @media (max-width: 768px) {
++          .team-title { font-size: 32px; }
+           .team-grid { grid-template-columns: 1fr; }
+           .team-section { padding: 60px 0; }
+         }
+      `}</style>
+      <section className="team-section">
       <div style={{ maxWidth: theme.wrappers.w1, margin: '0 auto', padding: '0 15px' }}>
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>
           <span style={{ display: 'block', textTransform: 'uppercase', color: theme.colors.secondary, marginBottom: '10px', letterSpacing: '1px' }}>OUR TEAM</span>
-          <h2 style={{ fontSize: '52px', fontWeight: 600, color: theme.colors.primary, lineHeight: '1.2' }}>Meet Our Professional Team</h2>
+          <h2 className="team-title" style={{ fontWeight: 600, color: theme.colors.primary }}>Meet Our Professional Team</h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '30px' }}>
+        <div className="team-grid">
           {team.map((member, index) => (
             <div key={index} style={{
               backgroundColor: '#fff',
@@ -60,5 +88,6 @@ export default function Team() {
         </div>
       </div>
     </section>
+  </>
   );
 }

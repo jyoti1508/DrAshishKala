@@ -7,48 +7,108 @@ import { theme } from '@/styles/theme';
 
 export default function About() {
   return (
-    <section style={{
-      paddingTop: theme.spacing.paddingTop,
-      paddingBottom: theme.spacing.paddingBottom,
-      backgroundColor: '#f6f9ff',
-      position: 'relative',
-      overflow: 'hidden'
-    }}>
+    <>
+      <style>{`
+        .about-section {
+          padding-top: ${theme.spacing.paddingTop};
+          padding-bottom: ${theme.spacing.paddingBottom};
+          background-color: #f6f9ff;
+          position: relative;
+          overflow: hidden;
+        }
+        .about-title {
+          font-size: 52px;
+          line-height: 1.2;
+          margin-bottom: 26px;
+        }
+        .about-decor-left, .about-decor-right {
+          position: absolute;
+          background-repeat: no-repeat;
+          pointer-events: none;
+        }
+        .about-decor-left {
+          left: -363px;
+          bottom: -161px;
+          width: 770px;
+          height: 848px;
+          background-image: url('/assets/images/design-lft-img.png');
+        }
+        .about-decor-right {
+          right: -297px;
+          top: -53px;
+          width: 577px;
+          height: 635px;
+          background-image: url('/assets/images/design-rt-img.png');
+        }
+        @media (max-width: 1300px) {
+          .about-decor-left, .about-decor-right { display: none; }
+        }
+        .about-grid {
+          display: grid;
+          grid-template-columns: 53% 44%;
+          gap: 60px;
+          align-items: center;
+        }
+        .about-images-wrapper {
+          display: flex;
+          gap: 30px;
+          flex-wrap: wrap;
+        }
+        .about-img-1, .about-img-2, .about-img-3 {
+          border-radius: 10px;
+          object-fit: cover;
+          max-width: 100%;
+        }
+        .about-img-2 {
+          margin-top: 60px;
+        }
+        .about-img-3 {
+          margin-top: -249px;
+        }
+        .about-list-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 15px;
+          margin-bottom: 32px;
+        }
+        @media (max-width: 1024px) {
+          .about-grid {
+            grid-template-columns: 1fr;
+          }
+          .about-images-wrapper {
+            justify-content: center;
+          }
+        }
+        @media (max-width: 768px) {
+          .about-title { font-size: 32px; }
+          .about-section {
+            padding-top: 60px;
+            padding-bottom: 60px;
+          }
+          .about-list-grid {
+            grid-template-columns: 1fr;
+          }
+          .about-img-2 {
+            margin-top: 20px;
+          }
+          .about-img-3 {
+            margin-top: 20px;
+          }
+        }
+      `}</style>
+      <section className="about-section">
       {/* Decorative background images */}
-      <div style={{
-        position: 'absolute',
-        left: '-363px',
-        bottom: '-161px',
-        width: '770px',
-        height: '848px',
-        backgroundImage: "url('/assets/images/design-lft-img.png')",
-        backgroundRepeat: 'no-repeat',
-        pointerEvents: 'none'
-      }} />
-      <div style={{
-        position: 'absolute',
-        right: '-297px',
-        top: '-53px',
-        width: '577px',
-        height: '635px',
-        backgroundImage: "url('/assets/images/design-rt-img.png')",
-        backgroundRepeat: 'no-repeat',
-        pointerEvents: 'none'
-      }} />
+      <div className="about-decor-left" />
+      <div className="about-decor-right" />
 
       <div style={{ maxWidth: theme.wrappers.w3, margin: '0 auto', padding: '0 15px', position: 'relative', zIndex: 1 }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '53% 44%',
-          gap: '60px',
-          alignItems: 'center'
-        }}>
+        <div className="about-grid">
           {/* About Image Section */}
           <div style={{ position: 'relative' }}>
-            <div style={{ display: 'flex', gap: '30px', flexWrap: 'wrap' }}>
-              <Image src="/assets/images/about-img1.jpg" alt="About 1" width={296} height={266} style={{ borderRadius: '10px', objectFit: 'cover' }} />
-              <Image src="/assets/images/about-img2.jpg" alt="About 2" width={295} height={455} style={{ borderRadius: '10px', objectFit: 'cover', marginTop: '60px' }} />
-              <Image src="/assets/images/about-img3.jpg" alt="About 3" width={296} height={266} style={{ borderRadius: '10px', objectFit: 'cover', marginTop: '-249px' }} />
+            <div className="about-images-wrapper">
+              <Image src="/assets/images/about-img1.jpg" alt="About 1" width={296} height={266} className="about-img-1" />
+              <Image src="/assets/images/about-img2.jpg" alt="About 2" width={295} height={455} className="about-img-2" />
+              <Image src="/assets/images/about-img3.jpg" alt="About 3" width={296} height={266} className="about-img-3" />
             </div>
             
             {/* Play Button */}
@@ -92,14 +152,14 @@ export default function About() {
           {/* About Text Content */}
           <div>
             <span style={{ display: 'block', textTransform: 'uppercase', color: theme.colors.secondary, marginBottom: '10px', letterSpacing: '1px' }}>About us</span>
-            <h2 style={{ fontSize: '52px', fontWeight: 600, color: theme.colors.primary, marginBottom: '26px', lineHeight: '1.2' }}>
+            <h2 className="about-title" style={{ fontWeight: 600, color: theme.colors.primary }}>
               Welcome to Dr. Ashish Kala Clinic & Healthcare
             </h2>
             <p style={{ color: theme.colors.text, marginBottom: '28px', fontSize: '18px' }}>
               Dr. Ashish Kala is a dedicated healthcare professional in Gurgaon, committed to providing comprehensive medical services. Our clinic combines experienced expertise with modern care to ensure your well-being.
             </p>
             
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '15px', marginBottom: '32px' }}>
+            <div className="about-list-grid">
               {[
                 'Monthly Checkups', 'Caring Medical Team', 'Proactive and Fast Results',
                 'Cosmetic Filling', 'Dental X-Ray', 'Complete Crown'
@@ -131,6 +191,7 @@ export default function About() {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+    </>
   );
 }

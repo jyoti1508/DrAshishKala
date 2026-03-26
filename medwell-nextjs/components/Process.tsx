@@ -33,14 +33,32 @@ const processes = [
 
 export default function Process() {
   return (
-    <section style={{ padding: '150px 0', backgroundColor: '#fff' }}>
+    <>
+      <style>{`
+        .process-section { padding: 150px 0; background-color: #fff; }
+        .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+        .process-title { font-size: 52px; line-height: 1.2; }
+        @media (max-width: 1200px) {
+          .process-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 1024px) {
+          .process-grid { grid-template-columns: repeat(2, 1fr); }
+          .process-section { padding: 100px 0; }
+        }
+        @media (max-width: 768px) {
+          .process-title { font-size: 32px; }
+          .process-grid { grid-template-columns: 1fr; }
+          .process-section { padding: 60px 0; }
+        }
+      `}</style>
+      <section className="process-section">
       <div style={{ maxWidth: theme.wrappers.w1, margin: '0 auto', padding: '0 15px' }}>
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>
           <span style={{ display: 'block', textTransform: 'uppercase', color: theme.colors.secondary, marginBottom: '10px', letterSpacing: '1px' }}>WORK PROCESS</span>
-          <h2 style={{ fontSize: '52px', fontWeight: 600, color: theme.colors.primary, lineHeight: '1.2' }}>Let’s See How We Work</h2>
+          <h2 className="process-title" style={{ fontWeight: 600, color: theme.colors.primary }}>Let’s See How We Work</h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '40px' }}>
+        <div className="process-grid">
           {processes.map((proc, index) => (
             <div key={index} style={{ textAlign: 'center' }}>
               <div style={{
@@ -76,12 +94,13 @@ export default function Process() {
                   {proc.num}
                 </div>
               </div>
-              <h4 style={{ fontSize: '22px', fontWeight: 600, color: theme.colors.primary, marginBottom: '10px' }}>{proc.title}</h4>
-              <p style={{ color: theme.colors.text }}>{proc.desc}</p>
+              <h4 className="process-item-title">{proc.title}</h4>
+              <p className="process-item-desc">{proc.desc}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
+    </>
   );
 }

@@ -34,21 +34,88 @@ const services = [
 
 export default function Services() {
   return (
-    <section style={{ 
-      paddingTop: theme.spacing.paddingTop, 
-      paddingBottom: theme.spacing.paddingBottom,
-      backgroundColor: theme.colors.white
-    }}>
-      <div style={{ maxWidth: theme.wrappers.w1, margin: '0 auto', padding: '0 15px' }}>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(4, 1fr)', 
-          gap: '30px' 
-        }}>
-          {/* Service Title Box */}
-          <div style={{ padding: '20px 0' }}>
+    <>
+      <style>{`
+        .services-section {
+          padding-top: ${theme.spacing.paddingTop};
+          padding-bottom: ${theme.spacing.paddingBottom};
+          background-color: ${theme.colors.white};
+        }
+        .services-title {
+          font-size: 52px;
+          line-height: 1.1;
+        }
+        .special-treatment-image {
+          width: 332px;
+          height: 332px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 30px;
+        }
+        .service-title-box {
+          padding: 20px 0;
+        }
+        .special-treatment-box {
+          grid-column: span 2;
+          display: flex;
+          align-items: center;
+          background-color: #0f2349;
+          border-radius: 10px;
+          overflow: hidden;
+          padding-left: 37px;
+          gap: 15px;
+        }
+        .special-treatment-img-box {
+          margin-left: auto;
+        }
+        @media (max-width: 1200px) {
+          .services-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+        @media (max-width: 1024px) {
+          .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .special-treatment-box {
+            grid-column: span 2;
+            flex-direction: column;
+            padding: 30px;
+            text-align: center;
+          }
+          .special-treatment-img-box {
+            margin-left: 0;
+            margin-top: 20px;
+          }
+        }
+        @media (max-width: 768px) {
+          .services-title { font-size: 32px; }
+          .special-treatment-image { width: 200px; height: 200px; }
+          .services-section {
+            padding-top: 60px;
+            padding-bottom: 60px;
+          }
+          .services-grid {
+            grid-template-columns: 1fr;
+          }
+          .special-treatment-box {
+            grid-column: span 1;
+            flex-direction: column;
+            padding: 30px;
+          }
+        }
+      `}</style>
+      <section className="services-section">
+        <div style={{ maxWidth: theme.wrappers.w1, margin: '0 auto', padding: '0 15px' }}>
+          <div className="services-grid">
+            {/* Service Title Box */}
+            <div className="service-title-box">
             <span style={{ display: 'block', fontSize: '16px', textTransform: 'uppercase', color: theme.colors.secondary, marginBottom: '10px', letterSpacing: '1px' }}>What We Provide</span>
-            <h2 style={{ fontSize: '52px', fontWeight: 600, color: theme.colors.primary, marginBottom: '17px', lineHeight: '1.1' }}>Our Medical Services</h2>
+            <h2 className="services-title" style={{ fontWeight: 600, color: theme.colors.primary, marginBottom: '17px' }}>Our Medical Services</h2>
             <p style={{ color: theme.colors.text }}>Molestiae non recusandae earum rerum hic tenetur asa piente delectus.</p>
           </div>
 
@@ -74,17 +141,8 @@ export default function Services() {
           ))}
 
           {/* Special Treatment Box spanning 2 columns */}
-          <div style={{
-            gridColumn: 'span 2',
-            display: 'flex',
-            alignItems: 'center',
-            backgroundColor: '#0f2349',
-            borderRadius: '10px',
-            overflow: 'hidden',
-            paddingLeft: '37px',
-            gap: '15px'
-          }}>
-            <div style={{ width: '40%' }}>
+          <div className="special-treatment-box">
+            <div style={{ flex: '1' }}>
               <h3 style={{ fontSize: '28px', color: theme.colors.white, marginBottom: '5px' }}>We Provide Best Medical Treatment.</h3>
               <p style={{ color: '#c5ccd8', marginBottom: '17px' }}>Reprehenderit in voluta zesse.</p>
               <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
@@ -94,13 +152,14 @@ export default function Services() {
                 </div>
               </div>
             </div>
-            <div style={{ marginLeft: 'auto' }}>
-              <Image src="/assets/images/treatment-img.jpg" alt="Treatment" width={332} height={332} style={{ borderRadius: '50%', objectFit: 'cover' }} />
+            <div className="special-treatment-img-box">
+              <Image src="/assets/images/treatment-img.jpg" alt="Treatment" width={332} height={332} className="special-treatment-image" />
             </div>
           </div>
 
         </div>
       </div>
     </section>
+    </>
   );
 }

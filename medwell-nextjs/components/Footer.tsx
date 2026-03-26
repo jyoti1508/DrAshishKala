@@ -8,9 +8,38 @@ import { theme } from '@/styles/theme';
 export default function Footer() {
   return (
     <footer style={{ backgroundColor: theme.colors.white }}>
-      <section style={{ padding: '100px 0', borderTop: '1px solid #f0f0f0' }}>
+      <style>{`
+        .footer-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 40px;
+        }
+        .footer-section {
+          padding: 100px 0;
+          border-top: 1px solid #f0f0f0;
+        }
+        @media (max-width: 1024px) {
+          .footer-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+          }
+          .footer-section {
+            padding: 80px 0;
+          }
+        }
+        @media (max-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+          }
+          .footer-section {
+            padding: 50px 0;
+          }
+        }
+      `}</style>
+      <section className="footer-section">
         <div style={{ maxWidth: theme.wrappers.w1, margin: '0 auto', padding: '0 15px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '40px' }}>
+          <div className="footer-grid">
             {/* Logo Box */}
             <div>
               <figure style={{ marginBottom: '30px' }}>
